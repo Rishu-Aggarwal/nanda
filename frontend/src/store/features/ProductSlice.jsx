@@ -9,7 +9,10 @@ const initialState = {
     search_error: null,
     product_search_page: [],
     product_search_page_status: "idle",
-    product_search_page_error: null
+    product_search_page_error: null,
+    product_search_page_total_products:0,
+    product_search_page_categories:[],
+    product_search_page_categories_quantity:[]
 };
 export const productsFetch = createAsyncThunk(
     "product/get-all",
@@ -19,7 +22,7 @@ export const productsFetch = createAsyncThunk(
     }
 );
 export const searchProductPage = createAsyncThunk("product/search/page", async (search_str) => {
-    const { data } = await axios.get(`http://localhost:8080/api/v2/nanda/product/search/${search_str}`);
+    const { data } = await axios.get(`http://localhost:8080/api/v2/nanda/product/search-by-category-and-by-product-name/${search_str}`);
     return data;
 });
 export const searchProducts = createAsyncThunk("product/search", async (search_str) => {
@@ -61,6 +64,9 @@ const ProductSlice = createSlice({
             .addCase(searchProductPage.fulfilled, (state, action) => {
                 state.product_search_page_status = "suceeded";
                 state.product_search_page = action.payload?.products;
+                state.product_search_page_total_products=action.payload?.total;
+                state.product_search_page_categories=action.payload?.categories;
+                state.product_search_page_categories_quantity=action.payload?.quantity;
             })
             .addCase(searchProductPage.rejected, (state, action) => {
                 state.product_search_page_status = "error";

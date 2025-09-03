@@ -372,3 +372,46 @@ export const searchProductsByCategory = async (req, res) => {
     error(500, "Server Error", false, res);
   }
 };
+export const searchProductByCategoryAndProductName=async(req,res)=>{
+  try {
+    const {search_str}=req.params;
+    const products=await productModel.find({
+      "$or":[
+        {"name":{$regex:search_str,$options:'i'}}
+      ]
+    });
+    const byCategory=await categoryModel.find({
+      "$or":[
+        {"name":{$regex:search_str,$options:'i'}},
+        {"slug":{$regex:search_str,$options:'i'}}
+      ]
+    });
+    const categories=[];
+    const quantity=[];
+    if(byCategory.length>0){
+      for(let i=0;i<byCategory.length;i++){
+        if(byCategory[i].total_product>0){
+          categories.push(byCategory[i]);
+          quantity.push(byCategory[i].total_product);
+          const productByCategory=await productModel.find({category:byCategory[i]._id});
+          if(productByCategory.length>0){
+            for(let j=0;j<productByCategory.length;j++){
+              products.push(productByCategory[j]);
+            }
+          }
+        }
+      }
+    }
+    res.status(200).json({
+      success:true,
+      message:"Product search successFully.",
+      total:products.length,
+      products,
+      categories,
+      quantity
+    });
+  } catch (error) {
+    console.log(err);
+    error(500, "Server Error", false, res);
+  }
+}

@@ -3,7 +3,7 @@ const ProductNotFound = ({params}) => {
     return (
         <div>
             <div className="m-10">
-                <p className="font-display font-semibold text-xl">Search Result for "{params.search_str}"</p>
+                <p className="font-display font-semibold text-xl text-center">Search Result for "{params.search_str}"</p>
             </div>
             <div className="w-full h-[40vh] flex items-center justify-center"><img src="../../public/productNotFound.png" alt="product-not-found"/></div>
             <div>

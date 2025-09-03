@@ -32,7 +32,7 @@ const SortingFilters = () => {
                     <RiArrowDropDownLine className="text-2xl"/>
                 </div>
             </div>
-            <div className="absolute top-16 w-full">
+            <div className="absolute top-16 w-full z-50">
                     <Filters show={show} setShow={setShow} filters={filters} filterIdx={filterIdx} setFilterIdx={setFilterIdx} />
                 </div>
         </div>
