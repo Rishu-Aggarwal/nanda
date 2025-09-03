@@ -12,7 +12,8 @@ const initialState = {
     product_search_page_error: null,
     product_search_page_total_products:0,
     product_search_page_categories:[],
-    product_search_page_categories_quantity:[]
+    product_search_page_categories_quantity:[],
+    product_search_page_initial:[]
 };
 export const productsFetch = createAsyncThunk(
     "product/get-all",
@@ -29,11 +30,14 @@ export const searchProducts = createAsyncThunk("product/search", async (search_s
     const { data } = await axios.get(`http://localhost:8080/api/v2/nanda/product/search/${search_str}`);
     return data;
 });
-
 const ProductSlice = createSlice({
     name: "product",
     initialState,
-    reducers: {},
+    reducers: {
+        sort:(state,action)=>{
+            state.product_search_page=action.payload;
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(productsFetch.pending, (state) => {
@@ -64,6 +68,7 @@ const ProductSlice = createSlice({
             .addCase(searchProductPage.fulfilled, (state, action) => {
                 state.product_search_page_status = "suceeded";
                 state.product_search_page = action.payload?.products;
+                state.product_search_page_initial=action.payload?.products
                 state.product_search_page_total_products=action.payload?.total;
                 state.product_search_page_categories=action.payload?.categories;
                 state.product_search_page_categories_quantity=action.payload?.quantity;
@@ -74,4 +79,5 @@ const ProductSlice = createSlice({
             });
     }
 });
+export const {sort}=ProductSlice.actions;
 export default ProductSlice.reducer;

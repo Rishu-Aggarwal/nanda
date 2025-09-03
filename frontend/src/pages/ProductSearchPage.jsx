@@ -33,7 +33,7 @@ const ProductSearchPage = () => {
                                                     <p className="2xl:text-lg xl:text-sm lg:text-sm md:text-xs sm:text-sx text-[10px]">{product_search_page_total_products} Products Found</p>
                                                 </div>
                                                 <div>
-                                                    <SortingFilters />
+                                                    <SortingFilters products={product_search_page}/>
                                                 </div>
                                             </div>
                                             <div className="my-8">
