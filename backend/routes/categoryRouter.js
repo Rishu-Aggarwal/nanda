@@ -1,0 +1,12 @@
+import express from "express";
+import isAuth from "../middlewares/auth.js";
+import isAdmin from "../middlewares/admin.js";
+import { create, deleteCategory, get, getAll, search, update } from "../controllers/categoryController.js";
+import singleUpload from "../middlewares/singleUpload.js";
+export const categoryRouter=express.Router();
+categoryRouter.post("/create",isAuth,isAdmin,singleUpload,create);
+categoryRouter.put("/update/:id",isAuth,isAdmin,singleUpload,update);
+categoryRouter.delete("/delete/:id",isAuth,isAdmin,deleteCategory);
+categoryRouter.get("/get/:id",get);
+categoryRouter.get("/get-all",getAll);
+categoryRouter.get("/search/:search_str",search);

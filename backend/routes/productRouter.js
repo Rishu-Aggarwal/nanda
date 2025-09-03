@@ -1,0 +1,18 @@
+import express from "express";
+import isAuth from "../middlewares/auth.js";
+import isAdmin from "../middlewares/admin.js";
+import singleUpload from "../middlewares/singleUpload.js";
+import { create, deleteAllProduct, deleteProduct, deleteSigleImage, get, getAll, searchProduct, searchProductsByCategory, update, updateSingleImage, uploadSingleImage } from "../controllers/productController.js";
+import multipleUpload from "../middlewares/multipleUpload.js";
+export const productRouter=express.Router();
+productRouter.post("/create",isAuth,isAdmin,multipleUpload,create);
+productRouter.put("/update/:product_id",isAuth,isAdmin,update);
+productRouter.delete("/delete/:product_id",isAuth,isAdmin,deleteProduct);
+productRouter.delete("/delete-all",isAuth,isAdmin,deleteAllProduct);
+productRouter.put("/update-image/:product_id/:img_id",isAuth,isAdmin,singleUpload,updateSingleImage);
+productRouter.delete("/delete-image/:product_id/:img_id",isAuth,isAdmin,deleteSigleImage);
+productRouter.get("/get/:product_id",get);
+productRouter.get("/get-all",getAll);
+productRouter.put("/upload-single-img",isAuth,isAdmin,singleUpload,uploadSingleImage);
+productRouter.get("/search/:search_str",searchProduct);
+productRouter.get("/search-by-category/:search_str",searchProductsByCategory);

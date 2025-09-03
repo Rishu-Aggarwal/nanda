@@ -1,0 +1,63 @@
+import mongoose from "mongoose";
+const userSchema=new mongoose.Schema({
+    name:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    email:{
+        type:String,
+        required:true,
+        unique:true
+    },
+    password:{
+        type:String,
+        required:true
+    },
+    number:{
+        type:String,
+        required:true,
+        unique:true
+    },
+    verificationCode:{
+        type:Number
+    },
+    verificationCodeExpires:{
+        type:Date
+    },
+    isVerified:{
+        type:Boolean,
+        default:false
+    },
+    isAdmin:{
+        type:Boolean,
+        default:false,
+    },
+    image:{
+        public_id:{
+            type:String
+        },
+        url:{
+            type:String
+        }
+    },
+    isImagePresent:{
+        type:Boolean,
+        default:false
+    },
+    forgetOtp:{
+        type:Number,
+    },
+    forgetOtpExpiries:{
+        type:Date
+    },
+    isForgetCodeVerified:{
+        type:Boolean,
+        default:false
+    },
+    isForgetCodeVerifiedExpires:{
+        type:Date
+    }
+},{timestamps:true});
+const userModel=new mongoose.model("user",userSchema);
+export default userModel;

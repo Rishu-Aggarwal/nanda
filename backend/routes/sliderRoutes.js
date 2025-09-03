@@ -1,0 +1,12 @@
+import express from "express";
+import singleUpload from "../middlewares/singleUpload.js";
+import { create, deleteSlider, get, getAll, search, update } from "../controllers/sliderController.js";
+import isAuth from "../middlewares/auth.js";
+import isAdmin from "../middlewares/admin.js";
+export const sliderRouter=express.Router();
+sliderRouter.post("/create",isAuth,isAdmin,singleUpload,create);
+sliderRouter.put("/update/:id",isAuth,isAdmin,singleUpload,update);
+sliderRouter.delete("/delete/:id",isAuth,isAdmin,deleteSlider);
+sliderRouter.get("/get/:id",isAuth,isAdmin,get);
+sliderRouter.get("/get-all",getAll);
+sliderRouter.get("/search/:search_str",isAuth,isAdmin,search);
