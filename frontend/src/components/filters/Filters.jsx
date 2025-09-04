@@ -15,7 +15,7 @@ const Filters = ({categories,quantites}) => {
     const [priceMin, setPriceMin] = useState(0);
     const [priceMax, setPriceMax] = useState(1000);
     return (
-        <div className="2xl:min-w-[400px] xl:min-w-[300px] lg:min-w-[300px] md:min-w-[250px] sm:min-w-[250px] min-w-[250px] max-w-[450px] w-full border rounded-md my-8">
+        <div className="2xl:min-w-[400px] xl:min-w-[300px] lg:min-w-[300px] md:min-w-[230px] sm:min-w-[240px] min-w-[300px] max-w-[450px] w-full border rounded-md">
             <div className="w-full border-b border-gray-300 flex items-center justify-between p-4">
                 <div><p className="2xl:text-3xl xl:text-xl lg:text-xl md:text-xl sm:text-lg text-sm font-bold font-display">Filters</p></div>
                 <div><p className="font-display font-extralight 2xl:text-2xl xl:text-sm lg:text-sm md:text-sm sm:text-sm text-xs">Clear All</p></div>

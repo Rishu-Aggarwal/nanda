@@ -12,6 +12,9 @@ export default {
       },
       fontFamily:{
         display:["Open Sans", "sans-serif"],
+      },
+      screens:{
+        phone:"560px"
       }
     },
   },
