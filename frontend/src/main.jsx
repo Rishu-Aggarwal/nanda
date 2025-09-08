@@ -7,9 +7,11 @@ import "swiper/css";
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import './index.css';
+import CentralStoreProvider from './CentralStore.jsx';
 createRoot(document.getElementById('root')).render(
   <Provider store={Store}>
-    <RouterProvider router={router}>
-    </RouterProvider>
-  </Provider>
+    <CentralStoreProvider>
+      <RouterProvider router={router} />
+    </CentralStoreProvider>
+  </Provider >
 )

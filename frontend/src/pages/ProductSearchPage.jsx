@@ -9,6 +9,7 @@ import SortingFilters from "../components/sorting/SortingFilters";
 import Product from "../components/products/Product";
 import { LuMenu } from "react-icons/lu";
 import { RxCross2 } from "react-icons/rx";
+import ProductPage from "./ProductPage";
 const ProductSearchPage = () => {
     const params = useParams();
     const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const ProductSearchPage = () => {
             <div className="w-full min-h-[80vh]">
                 {product_search_page_status == "loading" ? <div className="w-full h-[100vh] flex items-center justify-center"><Loader /></div> :
                     product_search_page.length == 0 ? <ProductNotFound params={params} /> :
+                    product_search_page.length==1?<ProductPage/>:
                         <div>
                             <div className="2xl:block xl:block lg:block md:block sm:block hidden">
                                 <div className="grid grid-cols-12 gap-0">
