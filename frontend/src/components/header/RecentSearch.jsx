@@ -37,7 +37,7 @@ const RecentSearch = () => {
                             >
                                 <div className="flex items-center justify-start">
                                     <CiSearch className="text-2xl mr-2" />
-                                    <p>{searchStr}</p>
+                                    <p className="2xl:text-lg xl:text-sm md:text-sm sm:text-[10px] text-[10px]">{searchStr}</p>
                                 </div>
                                 <GoArrowUpLeft className="text-2xl" />
                             </div>
@@ -53,7 +53,7 @@ const RecentSearch = () => {
                                 >
                                     <div className="flex items-center justify-start">
                                         <CiSearch className="text-2xl mr-2" />
-                                        <p>{item}</p>
+                                        <p className="2xl:text-lg xl:text-sm md:text-sm sm:text-[10px] text-[10px]">{item}</p>
                                     </div>
                                     <GoArrowUpLeft className="text-2xl" />
                                 </div>

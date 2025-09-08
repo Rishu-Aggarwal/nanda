@@ -20,7 +20,7 @@ const ProductSearchPage = () => {
     return (
         <>
             <div className="w-full min-h-[80vh]">
-                {product_search_page_status == "loading" ? <Loader /> :
+                {product_search_page_status == "loading" ? <div className="w-full h-[100vh] flex items-center justify-center"><Loader /></div> :
                     product_search_page.length == 0 ? <ProductNotFound params={params} /> :
                         <div>
                             <div className="2xl:block xl:block lg:block md:block sm:block hidden">
